@@ -15,6 +15,7 @@ import me.djbiokinetix.comandos.AcceptCommand;
 import me.djbiokinetix.comandos.DuelCommand;
 import me.djbiokinetix.comandos.MatchCommand;
 import me.djbiokinetix.comandos.admin.ClearChatCommand;
+import me.djbiokinetix.comandos.admin.CrearCommand;
 import me.djbiokinetix.comandos.admin.EstablecerCommand;
 import me.djbiokinetix.comandos.admin.PararCommand;
 import me.djbiokinetix.comandos.admin.TPCommand;
@@ -54,6 +55,7 @@ public class Main extends JavaPlugin {
 		getCommand("gm").setExecutor(new GamemodeCommand(this));
 		getCommand("msg").setExecutor(new MensajePrivado(this));
 		getCommand("r").setExecutor(new MensajePrivadoReply(this));
+		getCommand("crear").setExecutor(new CrearCommand(this));
 		
 		pm.registerEvents(new EventosJugador(this), this);
 		pm.registerEvents(new MundoEventos(this), this);
