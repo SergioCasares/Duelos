@@ -1,4 +1,4 @@
-package me.djbiokinetix.comandos;
+package me.djbiokinetix.comandos.admin;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -7,29 +7,25 @@ import org.bukkit.entity.Player;
 
 import me.djbiokinetix.Main;
 
-public class LobbyCommand implements CommandExecutor {
+public class EstablecerCommand implements CommandExecutor {
 
 	public Main main;
 	
-	public LobbyCommand(Main instancia) {
+	public EstablecerCommand(Main instancia) {
 		main = instancia;
 	}
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (sender instanceof Player) {
-			
 			Player p = (Player) sender;
-			
 			if (args.length == 0) {
-				p.sendMessage(main.c("&8[&6Code&8] &7Enviando al &bLobby&7..."));
-				main.bungeeLobby(p);
+				p.sendMessage("Ningun comando coincide.");
 			}
-			
 		} else {
 			return true;
 		}
 		return false;
 	}
-
+	
 }

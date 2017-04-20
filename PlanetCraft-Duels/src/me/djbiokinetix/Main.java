@@ -11,13 +11,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.Messenger;
 
 import me.djbiokinetix.comandos.AcceptCommand;
-import me.djbiokinetix.comandos.ClearChatCommand;
 import me.djbiokinetix.comandos.DuelCommand;
-import me.djbiokinetix.comandos.EstablecerCommand;
-import me.djbiokinetix.comandos.LobbyCommand;
 import me.djbiokinetix.comandos.MatchCommand;
-import me.djbiokinetix.comandos.PararCommand;
-import me.djbiokinetix.comandos.TPCommand;
+import me.djbiokinetix.comandos.admin.ClearChatCommand;
+import me.djbiokinetix.comandos.admin.EstablecerCommand;
+import me.djbiokinetix.comandos.admin.PararCommand;
+import me.djbiokinetix.comandos.admin.TPCommand;
+import me.djbiokinetix.comandos.extern.LobbyCommand;
 import me.djbiokinetix.comandos.modes.AdventureCommand;
 import me.djbiokinetix.comandos.modes.CreativeCommand;
 import me.djbiokinetix.comandos.modes.GamemodeCommand;

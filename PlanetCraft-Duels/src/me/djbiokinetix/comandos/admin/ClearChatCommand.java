@@ -1,4 +1,4 @@
-package me.djbiokinetix.comandos;
+package me.djbiokinetix.comandos.admin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
