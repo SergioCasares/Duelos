@@ -44,8 +44,8 @@ public class MensajePrivado implements CommandExecutor {
 					if (checar == null) {
 						p.sendMessage(main.c("&8[&6Code&8] &7El mensaje no puede estar vacio!"));
 					} else if (checar != null) {
-						p.sendMessage(main.c("&8[&6Code&8] &7Mensaje para &a"+target.getName()+"\n&8[&6Ex&8] &7Mensaje: "+sb));
-						target.sendMessage(main.c("&8[&6Code&8] &7Mensaje de &a"+p.getName()+"\n&8[&6Ex&8] &7Mensaje: "+sb));
+						p.sendMessage(main.c("&8[&6Code&8] &7Mensaje para &a"+target.getName()+"\n&8[&6Ex&8] &7Mensaje: &f"+sb));
+						target.sendMessage(main.c("&8[&6Code&8] &7Mensaje de &a"+p.getName()+"\n&8[&6Ex&8] &7Mensaje: &f"+sb));
 			            main.ultimo.put(target.getName(), p.getName());
 					}
 				} else {

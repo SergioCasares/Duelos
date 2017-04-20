@@ -48,8 +48,8 @@ public class MensajePrivadoReply implements CommandExecutor {
 						return false;
 					}
 					Player target = Bukkit.getPlayer(targetMsg);
-					p.sendMessage(main.c("&8[&6Code&8] &7Mensaje para &a"+target.getName()+"\n&8[&6Ex&8] &7Mensaje: "+sb));
-					target.sendMessage(main.c("&8[&6Code&8] &7Mensaje de &a"+p.getName()+"\n&8[&6Ex&8] &7Mensaje: "+sb));
+					p.sendMessage(main.c("&8[&6Code&8] &7Mensaje para &a"+target.getName()+"\n&8[&6Ex&8] &7Mensaje: &f"+sb));
+					target.sendMessage(main.c("&8[&6Code&8] &7Mensaje de &a"+p.getName()+"\n&8[&6Ex&8] &7Mensaje: &f"+sb));
 				} else {
 					return true;
 				}
