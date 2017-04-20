@@ -1,0 +1,47 @@
+name: PlanetCraft-Duels
+author: DJBiokinetix
+main: me.djbiokinetix.Main
+version: 2.0-BETA
+commands:
+   duel:
+    description: Send a duel.
+   accept:
+    description: Accept duel.
+   match:
+    description: Matched game.
+   establecer:
+    description: Establecer arenas.
+   parar:
+    description: Para duelos.
+   lobby:
+    description: Ir al lobby.
+   clearchat:
+    description: ClearChat
+    aliases: [cc, cchat]
+   tp:
+    description: Teleport.
+   gmc:
+    description: Gamemode creativo.
+   gms:
+    description: Gamemode survival.
+   gma:
+    description: Gamemode aventura.
+   gm:
+    description: Gamemode.
+permissions:
+   planetcraft-duels.cc:
+    default: op
+   planetcraft-duels.chat.owner:
+    default: op
+   planetcraft-duels.message.join:
+    default: op
+   planetcraft-duels.message.quit:
+    default: op
+   planetcraft-duels.teleport.tp:
+    default: op
+   planetcraft-duels.gamemode.creative:
+    default: op
+   planetcraft-duels.gamemode.survival:
+    default: op
+   planetcraft-duels.gamemode.adventure:
+    default: op
