@@ -1,7 +1,7 @@
 name: PlanetCraft-Duels
 author: DJBiokinetix
 main: me.djbiokinetix.Main
-version: 2.0-BETA
+version: 2.6-BETA
 commands:
    duel:
     description: Send a duel.
@@ -28,6 +28,10 @@ commands:
     description: Gamemode aventura.
    gm:
     description: Gamemode.
+   msg:
+    description: Mensaje privado.
+   r:
+    description: Respuesta a mensaje privado.
 permissions:
    planetcraft-duels.cc:
     default: op

@@ -1,6 +1,7 @@
 package me.djbiokinetix;
 
 import java.io.DataOutputStream;
+import java.util.HashMap;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.bukkit.Bukkit;
@@ -18,6 +19,8 @@ import me.djbiokinetix.comandos.admin.EstablecerCommand;
 import me.djbiokinetix.comandos.admin.PararCommand;
 import me.djbiokinetix.comandos.admin.TPCommand;
 import me.djbiokinetix.comandos.extern.LobbyCommand;
+import me.djbiokinetix.comandos.extern.MensajePrivado;
+import me.djbiokinetix.comandos.extern.MensajePrivadoReply;
 import me.djbiokinetix.comandos.modes.AdventureCommand;
 import me.djbiokinetix.comandos.modes.CreativeCommand;
 import me.djbiokinetix.comandos.modes.GamemodeCommand;
@@ -30,6 +33,7 @@ public class Main extends JavaPlugin {
 	
 	PluginManager pm = Bukkit.getPluginManager();
 	Messenger messenger = Bukkit.getMessenger();
+	public HashMap<String, String> ultimo = new HashMap<>();
 	
 	@Override
 	public void onEnable() {
@@ -48,6 +52,8 @@ public class Main extends JavaPlugin {
 		getCommand("gms").setExecutor(new SurvivalCommand(this));
 		getCommand("gma").setExecutor(new AdventureCommand(this));
 		getCommand("gm").setExecutor(new GamemodeCommand(this));
+		getCommand("msg").setExecutor(new MensajePrivado(this));
+		getCommand("r").setExecutor(new MensajePrivadoReply(this));
 		
 		pm.registerEvents(new EventosJugador(this), this);
 		pm.registerEvents(new MundoEventos(this), this);
