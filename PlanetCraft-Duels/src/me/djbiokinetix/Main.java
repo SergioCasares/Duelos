@@ -19,6 +19,7 @@ import me.djbiokinetix.comandos.admin.CrearCommand;
 import me.djbiokinetix.comandos.admin.EstablecerCommand;
 import me.djbiokinetix.comandos.admin.PararCommand;
 import me.djbiokinetix.comandos.admin.TPCommand;
+import me.djbiokinetix.comandos.admin.TPHCommand;
 import me.djbiokinetix.comandos.extern.LobbyCommand;
 import me.djbiokinetix.comandos.extern.MensajePrivado;
 import me.djbiokinetix.comandos.extern.MensajePrivadoReply;
@@ -49,6 +50,7 @@ public class Main extends JavaPlugin {
 		getCommand("parar").setExecutor(new PararCommand(this));
 		getCommand("clearchat").setExecutor(new ClearChatCommand(this));
 		getCommand("tp").setExecutor(new TPCommand(this));
+		getCommand("s").setExecutor(new TPHCommand(this));
 		getCommand("gmc").setExecutor(new CreativeCommand(this));
 		getCommand("gms").setExecutor(new SurvivalCommand(this));
 		getCommand("gma").setExecutor(new AdventureCommand(this));

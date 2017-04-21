@@ -43,6 +43,7 @@ public class TPCommand implements CommandExecutor {
 				
 				if (p.hasPermission("planetcraft-duels.teleport.tp")) {
 					p.teleport(target);
+					p.sendMessage(main.c("&8[&6Code&8] &7Teletransportando con &b"+target.getName()));
 					return false;
 				} else {
 					p.sendMessage(main.c("&8[&6Code&8] &7No tienes permisos."));

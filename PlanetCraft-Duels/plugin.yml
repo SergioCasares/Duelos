@@ -20,6 +20,8 @@ commands:
     aliases: [cc, cchat]
    tp:
     description: Teleport.
+   s:
+    description: Teleport.
    gmc:
     description: Gamemode creativo.
    gms:
