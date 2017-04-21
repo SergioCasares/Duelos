@@ -6,6 +6,8 @@ import java.util.HashMap;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,6 +25,7 @@ import me.djbiokinetix.comandos.admin.TPHCommand;
 import me.djbiokinetix.comandos.extern.LobbyCommand;
 import me.djbiokinetix.comandos.extern.MensajePrivado;
 import me.djbiokinetix.comandos.extern.MensajePrivadoReply;
+import me.djbiokinetix.comandos.extern.SpawnCommand;
 import me.djbiokinetix.comandos.modes.AdventureCommand;
 import me.djbiokinetix.comandos.modes.CreativeCommand;
 import me.djbiokinetix.comandos.modes.GamemodeCommand;
@@ -36,6 +39,7 @@ public class Main extends JavaPlugin {
 	PluginManager pm = Bukkit.getPluginManager();
 	Messenger messenger = Bukkit.getMessenger();
 	public HashMap<String, String> ultimo = new HashMap<>();
+	public Location localizacion;
 	
 	@Override
 	public void onEnable() {
@@ -58,6 +62,9 @@ public class Main extends JavaPlugin {
 		getCommand("msg").setExecutor(new MensajePrivado(this));
 		getCommand("r").setExecutor(new MensajePrivadoReply(this));
 		getCommand("crear").setExecutor(new CrearCommand(this));
+		getCommand("spawn").setExecutor(new SpawnCommand(this));
+		cargarLocalizacion();
+		cargarConfiguracion();
 		
 		pm.registerEvents(new EventosJugador(this), this);
 		pm.registerEvents(new MundoEventos(this), this);
@@ -84,11 +91,33 @@ public class Main extends JavaPlugin {
 		
 	}
 
+	public void cargarLocalizacion() {
+		try {
+			World world = Bukkit.getWorld(getConfig().getString("localizacion.mundo"));
+			if(configuracion!=null)
+			{
+				localizacion=new Location(world,x,y,z,yaw,pitch);
+			}
+		} catch (Exception ex) {}
+	}
+	
+	public void cargarConfiguracion() {
+		getConfig().options().copyDefaults(true);
+		saveConfig();
+	}
+	
+	public void salvarLocalizacion(Location loc) {
+		saveConfig();
+	}
+	
 	public String c(String colorizar) {
 		return ChatColor.translateAlternateColorCodes('&', colorizar);
 	}
 	
 	@Override
-	public void onDisable() {}
+	public void onDisable() {
+		reloadConfig();
+		saveConfig();
+	}
 	
 }

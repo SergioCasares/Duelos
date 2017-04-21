@@ -1,0 +1,9 @@
+funciones:
+  teleport:
+    localizacion:
+      mundo:
+      x:
+      y:
+      z:
+      yaw:
+      pitch:
