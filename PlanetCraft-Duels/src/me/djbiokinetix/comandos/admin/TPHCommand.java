@@ -23,7 +23,7 @@ public class TPHCommand implements CommandExecutor {
 			Player p = (Player) sender;
 			
 			if (args.length == 0) {
-				p.sendMessage(main.c("&8[&6Code&8] &7Uso correcto: &c/tp <Player>"));
+				p.sendMessage(main.c("&8[&6Code&8] &7Uso correcto: &c/s <Player>"));
 			}
 			
 			if (args.length > 0) {
@@ -31,18 +31,10 @@ public class TPHCommand implements CommandExecutor {
 					
 				Player target = Bukkit.getPlayer(args[0]);
 				
-				if (target == p) {
-					p.sendMessage(main.c("&8[&6Code&8] &7No puedes teletransportarte a ti mismo."));
-					return true;
-				}
-				
-				if (target == null) {
-					p.sendMessage(main.c("&8[&6Code&8] &7Ese jugador esta offline!"));
-					return true;
-				}
-				
 				if (p.hasPermission("planetcraft-duels.teleport.tp")) {
-					target.teleport(p);
+					try {
+						target.teleport(p);
+					} catch (Exception ex) {}
 				} else {
 					p.sendMessage(main.c("&8[&6Code&8] &7No tienes permisos."));
 					return true;
