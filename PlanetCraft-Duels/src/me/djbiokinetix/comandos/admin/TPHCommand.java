@@ -27,8 +27,7 @@ public class TPHCommand implements CommandExecutor {
 			}
 			
 			if (args.length > 0) {
-
-					
+				
 				Player target = Bukkit.getPlayer(args[0]);
 				
 				if (p.hasPermission("planetcraft-duels.teleport.tp")) {
