@@ -20,7 +20,7 @@ public class EventosJugador implements Listener {
 	
 	@EventHandler
 	public void onLog(PlayerLoginEvent e) {
-		e.setKickMessage("&8[&6Code&8] &7Modo de mantenimiento.");
+		e.setKickMessage("&8[&6Code&8] &7Modo de mantenimiento. (Acceso: &aSolo staff &7[&bSkype&7])");
 	}
 	
 	@EventHandler

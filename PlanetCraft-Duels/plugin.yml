@@ -22,6 +22,8 @@ commands:
     description: Teleport.
    s:
     description: Teleport.
+   crear:
+    description: Crear arena.
    gmc:
     description: Gamemode creativo.
    gms:
