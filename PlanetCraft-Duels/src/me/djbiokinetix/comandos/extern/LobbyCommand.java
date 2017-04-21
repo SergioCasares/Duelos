@@ -23,6 +23,7 @@ public class LobbyCommand implements CommandExecutor {
 			
 			if (args.length == 0) {
 				p.sendMessage(main.c("&8[&6Code&8] &7Enviando al &bLobby&7..."));
+				main.getLogger().info("[Socket] "+p.getName()+": /"+cmd.getLabel());
 				main.bungeeLobby(p);
 			}
 			

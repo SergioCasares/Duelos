@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import me.djbiokinetix.Main;
+import net.md_5.bungee.api.ChatColor;
 
 public class EventosJugador implements Listener {
 
@@ -26,6 +27,9 @@ public class EventosJugador implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
+		if ((p.isOp())||(p.hasPermission("planetcraft-duels.message.join"))) {
+			e.setJoinMessage(main.c("&8[&6Code&8] &e"+p.getName()+" &8» &7ha entrado al servidor."));
+		}
 		try {
 			if (main.getConfig().getString("funciones.teleport.localizacion.mundo")!=null) {
 				p.teleport(main.localizacion);
@@ -39,9 +43,6 @@ public class EventosJugador implements Listener {
 				}
 			}
 		}catch(Exception ex) {}
-		if ((p.isOp())||(p.hasPermission("planetcraft-duels.message.join"))) {
-			e.setJoinMessage(main.c("&8[&6Code&8] &e"+p.getName()+" &8» &7ha entrado al servidor."));
-		}
 		e.setJoinMessage(null);
 		return;
 	}
@@ -85,7 +86,7 @@ public class EventosJugador implements Listener {
 			e.setFormat(main.c("&8[&6Ayudante&8] &7"+p.getName()+" &8» &b"+e.getMessage()));
 			return;
 		}
-		e.setFormat(main.c("&7"+p.getName()+" &8» &f"+e.getMessage()));
+		e.setFormat(ChatColor.GRAY+p.getName()+ChatColor.DARK_GRAY+" » "+ChatColor.WHITE+e.getMessage());
 	}
 	
 }
