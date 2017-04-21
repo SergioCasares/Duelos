@@ -1,7 +1,7 @@
 name: PlanetCraft-Duels
 author: DJBiokinetix
 main: me.djbiokinetix.Main
-version: 3.0-BETA
+version: 3.7-BETA
 commands:
    duel:
     description: Send a duel.
