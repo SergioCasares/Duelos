@@ -37,6 +37,8 @@ commands:
     description: Mensaje privado.
    r:
     description: Respuesta a mensaje privado.
+   spawn:
+    description: Spawn command.
 permissions:
    planetcraft-duels.cc:
     default: op
