@@ -30,17 +30,14 @@ public class EventosJugador implements Listener {
 			if (main.getConfig().getString("funciones.teleport.localizacion.mundo")!=null) {
 				p.teleport(main.localizacion);
 				p.sendMessage(main.c("&8[&6Code&8] [&cEvent&8] &7Teletransportado automaticamente al &bspawn &7del servidor."));
-				return;
 			} else {
 				if (p.isOp()) {
 					p.sendMessage(main.c("&8[&6Code&8] &7El &bspawn &7no ha sido establecido."));
-					return;
 				}
 			}
 		}catch(Exception ex) {}
 		if ((p.isOp())||(p.hasPermission("planetcraft-duels.message.join"))) {
 			e.setJoinMessage(main.c("&8[&6Code&8] &e"+p.getName()+" &8» &7ha entrado al servidor."));
-			return;
 		}
 		e.setJoinMessage(null);
 		return;
