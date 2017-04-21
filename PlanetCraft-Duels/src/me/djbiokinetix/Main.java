@@ -93,7 +93,13 @@ public class Main extends JavaPlugin {
 
 	public void cargarLocalizacion() {
 		try {
+			String configuracion = getConfig().getString("funciones.teleport.localizacion.mundo");
 			World world = Bukkit.getWorld(getConfig().getString("localizacion.mundo"));
+			double x = getConfig().getDouble("funciones.teleport.localizacion.x");
+			double y = getConfig().getDouble("funciones.teleport.localizacion.y");
+			double z = getConfig().getDouble("funciones.teleport.localizacion.z");
+			float yaw = Float.parseFloat(getConfig().getString("funciones.teleport.localizacion.yaw"));
+			float pitch = Float.parseFloat(getConfig().getString("funciones.teleport.localizacion.pitch"));
 			if(configuracion!=null)
 			{
 				localizacion=new Location(world,x,y,z,yaw,pitch);
@@ -107,6 +113,13 @@ public class Main extends JavaPlugin {
 	}
 	
 	public void salvarLocalizacion(Location loc) {
+		getConfig().set("funciones.teleport.localizacion",loc);
+		getConfig().set("funciones.teleport.localizacion.mundo",loc.getWorld().getName());
+		getConfig().set("funciones.teleport.localizacion.x",Double.valueOf(loc.getX()));
+		getConfig().set("funciones.teleport.localizacion.y",Double.valueOf(loc.getY()));
+		getConfig().set("funciones.teleport.localizacion.z",Double.valueOf(loc.getZ()));
+		getConfig().set("funciones.teleport.localizacion.yaw",Float.valueOf(loc.getYaw()));
+		getConfig().set("funciones.teleport.localizacion.pitch",Float.valueOf(loc.getPitch()));
 		saveConfig();
 	}
 	
