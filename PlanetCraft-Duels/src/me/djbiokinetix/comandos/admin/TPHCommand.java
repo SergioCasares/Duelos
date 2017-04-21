@@ -43,8 +43,6 @@ public class TPHCommand implements CommandExecutor {
 				
 				if (p.hasPermission("planetcraft-duels.teleport.tp")) {
 					target.teleport(p);
-					p.sendMessage(main.c("&8[&6Code&8] &7Teletransportando a "+target.getName()));
-					return false;
 				} else {
 					p.sendMessage(main.c("&8[&6Code&8] &7No tienes permisos."));
 					return true;
