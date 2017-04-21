@@ -29,6 +29,9 @@ public class EventosJugador implements Listener {
 		try {
 			if (main.getConfig().getString("funciones.teleport.localizacion.mundo")!=null) {
 				p.teleport(main.localizacion);
+				p.setHealth(20);
+				p.setFoodLevel(20);
+				p.getActivePotionEffects().clear();
 				p.sendMessage(main.c("&8[&6Code&8] [&cEvent&8] &7Teletransportado automaticamente al &bspawn &7del servidor."));
 			} else {
 				if (p.isOp()) {

@@ -94,7 +94,7 @@ public class Main extends JavaPlugin {
 	public void cargarLocalizacion() {
 		try {
 			String configuracion = getConfig().getString("funciones.teleport.localizacion.mundo");
-			World world = Bukkit.getWorld(getConfig().getString("localizacion.mundo"));
+			World world = Bukkit.getWorld(getConfig().getString("funciones.teleport.localizacion.mundo"));
 			double x = getConfig().getDouble("funciones.teleport.localizacion.x");
 			double y = getConfig().getDouble("funciones.teleport.localizacion.y");
 			double z = getConfig().getDouble("funciones.teleport.localizacion.z");
