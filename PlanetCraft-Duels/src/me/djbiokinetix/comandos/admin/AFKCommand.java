@@ -31,7 +31,7 @@ public class AFKCommand implements CommandExecutor {
 				} else {
 					main.afk.put(p.getName(), p.getDisplayName());
 					p.getServer().broadcastMessage(main.c("&8[&6Code&8] &a"+p.getName()+" &7esta ausente!"));
-					p.setPlayerListName(main.c("&cAFK &f"+p.getName()));
+					p.setPlayerListName(main.c("&8[&cAFK&8] &f"+p.getName()));
 					return true;
 				}
 				

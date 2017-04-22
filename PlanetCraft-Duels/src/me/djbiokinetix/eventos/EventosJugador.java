@@ -38,7 +38,7 @@ public class EventosJugador implements Listener {
 	
 	@EventHandler
 	public void onLog(PlayerLoginEvent e) {
-		e.setKickMessage("&8[&6Code&8] &7Modo de mantenimiento. (Acceso: &aSolo staff &7[&bSkype&7])");
+		e.setKickMessage(main.c("&8[&6Code&8] &7Modo de mantenimiento. (Acceso: &aSolo staff &7[&bSkype&7])"));
 	}
 	
 	@EventHandler
@@ -112,8 +112,11 @@ public class EventosJugador implements Listener {
 		} else if (p.hasPermission("planetcraft-duels.chat.ayudante")) {
 			e.setFormat(main.c("&8[&6Ayudante&8] &7"+p.getName()+" &8» &b"+e.getMessage()));
 			return;
+		} else if (p.hasPermission("planetcraft-duels.chat.color")) {
+			e.setFormat(main.c("&7"+p.getName()+" &8» &f"+e.getMessage()));
+		} else {
+			e.setFormat(ChatColor.GRAY+p.getName()+ChatColor.DARK_GRAY+" » "+ChatColor.WHITE+e.getMessage());
 		}
-		e.setFormat(ChatColor.GRAY+p.getName()+ChatColor.DARK_GRAY+" » "+ChatColor.WHITE+e.getMessage());
 	}
 	
 }
