@@ -4,19 +4,36 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import me.djbiokinetix.Main;
 import net.md_5.bungee.api.ChatColor;
 
+@SuppressWarnings("deprecation")
 public class EventosJugador implements Listener {
 
 	public Main main;
 	
 	public EventosJugador(Main instancia) {
 		main = instancia;
+	}
+	
+	@EventHandler
+	public void onMove(PlayerMoveEvent e) {
+		Player p = e.getPlayer();
+		if (main.afk.containsKey(p.getName())) {
+			int movX = e.getFrom().getBlockX() - e.getTo().getBlockX();
+			int movZ = e.getFrom().getBlockZ() - e.getTo().getBlockZ();
+			if ((Math.abs(movX) >= 1) || (Math.abs(movZ) >= 1)) {
+				p.getServer().broadcastMessage(main.c("&8[&6Code&8] &a"+p.getName()+" &7ya no esta ausente!"));
+				p.setPlayerListName(main.getColoredPlayerListName(p.getName(), p.getDisplayName()));
+				main.afk.remove(p.getName());
+			}
+		}
 	}
 	
 	@EventHandler
@@ -56,6 +73,16 @@ public class EventosJugador implements Listener {
 		}
 		e.setQuitMessage(null);
 		return;
+	}
+	
+	@EventHandler
+	public void onMensaje(PlayerChatEvent e) {
+		Player p = e.getPlayer();
+		if (main.afk.containsKey(p.getName())) {
+			p.getServer().broadcastMessage(main.c("&8[&6Code&8] &a"+p.getName()+" &7ya no esta ausente!"));
+			p.setPlayerListName(main.getColoredPlayerListName(p.getName(), p.getDisplayName()));
+			main.afk.remove(p.getName());
+		}
 	}
 	
 	@EventHandler

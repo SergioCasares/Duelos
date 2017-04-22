@@ -16,6 +16,7 @@ import org.bukkit.plugin.messaging.Messenger;
 import me.djbiokinetix.comandos.AcceptCommand;
 import me.djbiokinetix.comandos.DuelCommand;
 import me.djbiokinetix.comandos.MatchCommand;
+import me.djbiokinetix.comandos.admin.AFKCommand;
 import me.djbiokinetix.comandos.admin.ClearChatCommand;
 import me.djbiokinetix.comandos.admin.CrearCommand;
 import me.djbiokinetix.comandos.admin.EstablecerCommand;
@@ -39,10 +40,13 @@ public class Main extends JavaPlugin {
 	PluginManager pm = Bukkit.getPluginManager();
 	Messenger messenger = Bukkit.getMessenger();
 	public HashMap<String, String> ultimo = new HashMap<>();
+	public HashMap<String, String> afk;
 	public Location localizacion;
 	
 	@Override
 	public void onEnable() {
+		
+		afk = new HashMap<>();
 		
 		messenger.registerOutgoingPluginChannel(this, "BungeeCord");
 		
@@ -63,6 +67,7 @@ public class Main extends JavaPlugin {
 		getCommand("r").setExecutor(new MensajePrivadoReply(this));
 		getCommand("crear").setExecutor(new CrearCommand(this));
 		getCommand("spawn").setExecutor(new SpawnCommand(this));
+		getCommand("afk").setExecutor(new AFKCommand(this));
 		cargarLocalizacion();
 		cargarConfiguracion();
 		
@@ -91,6 +96,20 @@ public class Main extends JavaPlugin {
 		
 	}
 
+	public String getColoredPlayerListName(String name, String displayName) {
+		String nuevoNombre = "&";
+		int i = 1;
+		while (displayName.charAt(i - 1) != '§') {
+			i++;
+			if (i > displayName.length()) {
+				return name;
+			}
+		}
+		nuevoNombre = nuevoNombre + displayName.charAt(i) + name;
+		nuevoNombre = nuevoNombre.replaceAll("&([0-9a-fA-F])", "§$1");
+		return nuevoNombre;
+	}
+	
 	public void cargarLocalizacion() {
 		try {
 			String configuracion = getConfig().getString("funciones.teleport.localizacion.mundo");

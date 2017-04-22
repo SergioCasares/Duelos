@@ -1,7 +1,7 @@
 name: PlanetCraft-Duels
 author: DJBiokinetix
 main: me.djbiokinetix.Main
-version: 3.7-BETA
+version: 4.0-BETA
 commands:
    duel:
     description: Send a duel.
@@ -39,6 +39,8 @@ commands:
     description: Respuesta a mensaje privado.
    spawn:
     description: Spawn command.
+   afk:
+    description: AFK.
 permissions:
    planetcraft-duels.cc:
     default: op
