@@ -39,6 +39,7 @@ public class Main extends JavaPlugin {
 	
 	PluginManager pm = Bukkit.getPluginManager();
 	Messenger messenger = Bukkit.getMessenger();
+	public HashMap<String, String> playerTrack = new HashMap<>();
 	public HashMap<String, String> ultimo = new HashMap<>();
 	public HashMap<String, String> afk;
 	public Location localizacion;
