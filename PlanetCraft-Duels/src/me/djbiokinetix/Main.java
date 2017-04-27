@@ -1,7 +1,11 @@
 package me.djbiokinetix;
 
 import java.io.DataOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.bukkit.Bukkit;
@@ -34,19 +38,29 @@ import me.djbiokinetix.comandos.modes.SurvivalCommand;
 import me.djbiokinetix.eventos.EventosJugador;
 import me.djbiokinetix.eventos.MundoEventos;
 import me.djbiokinetix.utils.DiaInfinito;
+import me.djbiokinetix.utils.Localizaciones;
 
 public class Main extends JavaPlugin {
 	
 	PluginManager pm = Bukkit.getPluginManager();
 	Messenger messenger = Bukkit.getMessenger();
-	public HashMap<String, String> playerTrack = new HashMap<>();
+	public Main main;
+	public HashMap<String, String> duelo = new HashMap<>();
+	public HashMap<Player, Integer> activo = new HashMap<>();
+	public ConcurrentHashMap<Player, Player> peticion = new ConcurrentHashMap<>();
+	public HashMap<Integer, Integer> arenas = new HashMap<>();
+	public HashMap<Integer, Localizaciones> configArena = new HashMap<>();
+	public HashMap<String, String> anon = new HashMap<>();
+	public ArrayList<Player> match = new ArrayList<>();
 	public HashMap<String, String> ultimo = new HashMap<>();
 	public HashMap<String, String> afk;
+	public Integer TID;
 	public Location localizacion;
 	
 	@Override
 	public void onEnable() {
 		
+		main = this;
 		afk = new HashMap<>();
 		
 		messenger.registerOutgoingPluginChannel(this, "BungeeCord");
@@ -97,6 +111,75 @@ public class Main extends JavaPlugin {
 		
 	}
 
+	public void match() {
+		if ((match == null) && (match.size() < 2)) {
+			return;
+		}
+		if ((match != null) && (match.size() == 2)) {
+			Random random = new Random();
+			Player jugador_1 = (Player) match.get(random.nextInt(match.size()));
+			Player jugador_2 = (Player) match.get(random.nextInt(match.size()));
+			if ((!match.contains(jugador_1)) && (!match.contains(jugador_2))) {
+				return;
+			}
+			if (jugador_1 == jugador_2) {
+				match();
+			} else if ((match.contains(jugador_1)) && (match.contains(jugador_2)) && (jugador_1 != jugador_2)) {
+				int arena = randomArena();
+				arenas.put(arena, 1);
+				//empezar juego
+			}
+		}
+	}
+	
+	public int randomArena() {
+		for (Map.Entry<Integer, Integer> x : arenas.entrySet()) {
+			int i = new Random().nextInt(x.getKey()); i++;
+			if (i == x.getKey()) {
+				return x.getKey();
+			}
+		}
+		return 0;
+	}
+	
+	public void comprobar(final Player jugador) {
+		TID=Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+			@Override
+			public void run() {
+				if (instancia().activo.get(jugador) != null) {
+					return;
+				} else {
+					jugador.sendMessage(instancia().c("&8[&6Code&8] &7Duelo no encontrado dentro del tiempo de espera, has sido removido del match."));
+					instancia().removerMatch(jugador);
+					return;
+				}
+			}
+		}, 30*20);
+	}
+	
+	public void añadirMatch(Player jugador) {
+		if (!match.contains(jugador)) {
+			match.add(jugador);
+			jugador.sendMessage(c("&8[&6Code&8] &7Buscando contrincantes..."));
+			comprobar(jugador);
+			return;
+		} else if (match.contains(jugador)) {
+			removerMatch(jugador);
+			Bukkit.getScheduler().cancelTask(TID);
+			return;
+		}
+	}
+	
+	public void removerMatch(Player jugador) {
+		if (match.contains(jugador)) {
+			match.remove(jugador);
+			return;
+		} else {
+			jugador.sendMessage(c("&8[&6Code&8] &7Ya habias sido removido del match."));
+			return;
+		}
+	}
+	
 	public String getColoredPlayerListName(String name, String displayName) {
 		String nuevoNombre = "&";
 		int i = 1;
@@ -147,6 +230,10 @@ public class Main extends JavaPlugin {
 		return ChatColor.translateAlternateColorCodes('&', colorizar);
 	}
 	
+	public Main instancia() {
+		return main;
+	}
+	
 	@Override
 	public void onDisable() {
 		reloadConfig();
@@ -154,3 +241,4 @@ public class Main extends JavaPlugin {
 	}
 	
 }
+//Main class
