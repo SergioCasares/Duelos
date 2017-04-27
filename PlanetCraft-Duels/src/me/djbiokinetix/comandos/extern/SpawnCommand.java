@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.djbiokinetix.Main;
+import me.djbiokinetix.utils.Configuraciones;
 
 public class SpawnCommand implements CommandExecutor {
 
@@ -36,7 +37,7 @@ public class SpawnCommand implements CommandExecutor {
 				if (args[0].equalsIgnoreCase("set")) {
 					if (p.hasPermission("planetcraft-duels.teleport.set.spawn")) {
 						main.localizacion = p.getLocation();
-						main.salvarLocalizacion(main.localizacion);
+						Configuraciones.salvarLocalizacion(main.localizacion);
 						String mundo = main.getConfig().getString("funciones.teleport.localizacion.mundo");
 						String x = main.getConfig().getString("funciones.teleport.localizacion.x");
 						String y = main.getConfig().getString("funciones.teleport.localizacion.y");

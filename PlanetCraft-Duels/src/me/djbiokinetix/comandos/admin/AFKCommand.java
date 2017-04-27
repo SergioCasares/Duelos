@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.djbiokinetix.Main;
+import me.djbiokinetix.utils.Controlador;
 
 public class AFKCommand implements CommandExecutor {
 
@@ -25,7 +26,7 @@ public class AFKCommand implements CommandExecutor {
 				
 				if (main.afk.containsKey(p.getName())) {
 					p.getServer().broadcastMessage(main.c("&8[&6Code&8] &a"+p.getName()+" &7ya no esta ausente!"));
-					p.setPlayerListName(main.getColoredPlayerListName(p.getName(), p.getDisplayName()));
+					p.setPlayerListName(Controlador.getColoredPlayerListName(p.getName(), p.getDisplayName()));
 					main.afk.remove(p.getName());
 					return true;
 				} else {
