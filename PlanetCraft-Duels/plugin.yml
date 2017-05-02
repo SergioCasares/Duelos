@@ -1,6 +1,6 @@
-name: PlanetCraft-Duels
+name: Duelos
 author: DJBiokinetix
-main: me.djbiokinetix.Main
+main: com.sergio.casares.Main
 version: 4.0-BETA
 commands:
    duel:
