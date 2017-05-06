@@ -1,5 +1,6 @@
 package com.sergio.casares;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,6 +14,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.Messenger;
 
+import com.mysql.jdbc.Connection;
 import com.sergio.casares.comandos.AcceptCommand;
 import com.sergio.casares.comandos.DuelCommand;
 import com.sergio.casares.comandos.MatchCommand;
@@ -31,13 +33,18 @@ import com.sergio.casares.comandos.modes.AdventureCommand;
 import com.sergio.casares.comandos.modes.CreativeCommand;
 import com.sergio.casares.comandos.modes.GamemodeCommand;
 import com.sergio.casares.comandos.modes.SurvivalCommand;
+import com.sergio.casares.data.mysql.MySQL;
 import com.sergio.casares.eventos.EventosJugador;
 import com.sergio.casares.eventos.MundoEventos;
 import com.sergio.casares.utils.Conexiones;
 import com.sergio.casares.utils.Configuraciones;
 import com.sergio.casares.utils.DiaInfinito;
 import com.sergio.casares.utils.Localizaciones;
-
+/**
+ * 
+ * @author DJBiokinetix
+ *
+ */
 public class Main extends JavaPlugin {
 	
 	PluginManager pm = Bukkit.getPluginManager();
@@ -55,8 +62,15 @@ public class Main extends JavaPlugin {
 	public Integer TID;
 	public Location localizacion;
 	
+	MySQL mySQL = new MySQL("192.99.37.134", "3306", "root", "7886");
+	Connection c = null;
+	
 	@Override
 	public void onEnable() {
+		
+		try {
+			c = mySQL.abrirConexion();
+		} catch (ClassNotFoundException | SQLException e) {}
 		
 		main = this;
 		afk = new HashMap<>();
